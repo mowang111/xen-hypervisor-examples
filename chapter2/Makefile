@@ -1,10 +1,10 @@
 CC=gcc
 ARCH = x86_64
-XEN_SRC = ../../xen-master
+XEN_SRC = /home/book/xen
 
 LDFLAGS  += -nostdlib
-CFLAGS   += -Wall -Werror -std=c99 -I$(XEN_SRC)/xen/include/public
-ASFLAGS  += -D__ASSEMBLY__ -I$(XEN_SRC)/xen/include/public
+CFLAGS   += -Wall -Werror -std=c99 -I$(XEN_SRC)/xen/include/xen -I$(XEN_SRC)/xen/include/public -I$(XEN_SRC)/xen/include/
+ASFLAGS  += -D__ASSEMBLY__ -I$(XEN_SRC)/xen/include/xen -I$(XEN_SRC)/xen/include/public -I$(XEN_SRC)/xen/include/
 
 ifeq ($(ARCH),x86_32)
 $(info compilation for i386)

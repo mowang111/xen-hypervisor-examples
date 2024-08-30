@@ -1,5 +1,6 @@
 # kernel value have to be replaced by absolute path!
-kernel = "testkernel"
+kernel = "/home/book/xen-hypervisor-examples/chapter2/testkernel"
+builder = "generic"
 # Initial memory allocation (in megabytes) for the new
 # domain.
 memory = 32
@@ -8,3 +9,6 @@ memory = 32
 name = "Simplest_Kernel"
 
 on_crash = 'destroy'
+
+serial='file:/home/book/xen-hypervisor-examples/chapter2/log.txt'
+

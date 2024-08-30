@@ -1,4 +1,4 @@
-#include <stdint.h> 
+#include <stdint.h>
 #include <xen.h>
 
 #if defined (__i686__)
@@ -12,9 +12,22 @@
 /* Some static space for the stack */
 char stack[8192];
 
-/* Main kernel entry point, called by trampoline */
-void start_kernel(start_info_t * start_info)
+void start_kernel(start_info_t *start_info)
 {
-	HYPERVISOR_console_io(CONSOLEIO_write,12,"Hello World\n");
-	while(1);
+    int ret; // 用于存储 hypercall 的返回值
+
+    while (1)
+    {
+        // 调用 hypercall 并检查返回值
+        ret = HYPERVISOR_console_io(CONSOLEIO_write, 12, "Hello world\n");
+
+        // 检查返回值，如果返回非零值表示出现错误
+        if (ret != 0)
+        {
+            break; // 退出循环，停止执行
+        }
+
+        // 简单的延时，避免占用过多 CPU 资源
+        for (volatile int i = 0; i < 10000000; i++);
+    }
 }
